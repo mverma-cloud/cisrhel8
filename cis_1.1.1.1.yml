@@ -11,4 +11,13 @@
           line: "install cramfs /bin/true"
           create: yes
           mode: 0600
-          
+      
+      - name: "1.1.1.2 | PATCH | Ensure mounting of squashfs filesystems is disabled | Edit modprobe config"
+        lineinfile:
+            path: /etc/modprobe.d/CIS.conf
+            regexp: "^(#)?install squashfs(\\s|$)"
+            line: "install squashfs /bin/true"
+            create: yes
+            mode: 0600
+      
+      
