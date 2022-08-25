@@ -1,0 +1,14 @@
+---
+  - name: "1.1.1.1 CIS RHEL 8 Ensue mouting of cramfs filesystem is turned off"
+    hosts: servera
+    tasks: 
+      - name : Edit the cis.modprobe file under /etc/modprobe.d
+        become: yes
+        become_user: root
+        lineinfile:
+          dest: /etc/modprobe.d/CIS.conf
+          regexp: "(#)?install cramfs(\\s|$)"
+          line: "install cramfs /bin/true"
+          create: yes
+          mode: 0600
+          
