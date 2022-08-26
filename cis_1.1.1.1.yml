@@ -1,5 +1,5 @@
 ---
-  - name: "1.1.1.1 CIS RHEL 8 Ensue mouting of cramfs filesystem is turned off"
+  - name: "1.1.1.1 CIS RHEL 8 Ensure mounting of cramfs filesystem is turned off"
     hosts: servera
     tasks: 
       - name : Edit the cis.modprobe file under /etc/modprobe.d
