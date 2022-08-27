@@ -1,0 +1,13 @@
+--- 
+  - name: 1.1.2.1 |CIS RHEL 8 |Check /tmp is seperate filesystem
+    hosts: servera
+    become: yes
+    become_user: root
+    tasks: 
+      - name: "check for [/tmp] is mounted as seperated filesystem as per CIS rules"
+        debug:
+          msg: "FIX - mount /tmp as seperate filesystem"
+        when:
+            ansible_fact["mount_names"] == "/tmp"
+        vars:
+          required_mount : '/tmp'      
