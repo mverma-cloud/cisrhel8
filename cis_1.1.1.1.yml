@@ -1,7 +1,8 @@
 ---
   - name: "1.1.1.1 | CIS RHEL 8 Ensure mounting of cramfs filesystem is turned off"
     hosts: servera
-    tasks: 
+    tasks:
+      -block:
       - name : Edit the cis.modprobe file under /etc/modprobe.d
         become: yes
         become_user: root
