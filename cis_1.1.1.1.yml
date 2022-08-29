@@ -4,8 +4,6 @@
     tasks:
       -block:
       - name : Edit the cis.modprobe file under /etc/modprobe.d
-        become: yes
-        become_user: root
         lineinfile:
           dest: /etc/modprobe.d/CIS.conf
           regexp: "(#)?install cramfs(\\s|$)"
@@ -33,5 +31,7 @@
           create: yes
           mode: 0600
       
+      become: yes
+      become_user: root
 
       
