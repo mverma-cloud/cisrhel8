@@ -20,9 +20,14 @@
             path: /etc/systemd/journald.conf
             regexp: "^#ForwardToSyslog=|^ForwardToSyslog="
             line: ForwardToSyslog=yes
-          tags: rule_4.2.1.1
+          tags: rule_4.2.1.3
         
-        - name: 4.2.1.3 |
+        - name: 4.2.1.4 | check file permissions on rsyslog
+          lineinfile:
+            path: /etc/rsyslog.conf
+            regexp: '^\$FileCreateMode 0640|#$FileCreateMode 0640'
+            line: "$FileCreateMode 0640"
+          tags: rule_4.2.1.4
 
 
       become: yes
