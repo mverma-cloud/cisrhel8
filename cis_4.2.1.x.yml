@@ -1,0 +1,27 @@
+---
+  - name: 4.2.1.x - check "rsyslog" package related RHEL 8 CIS rules"
+    hosts: servera
+    tasks:
+    - block: 
+        - name: rule 4.2.1.2 | install rsyslog if not present
+          package:
+            name: rsyslog
+            state: present
+          tags: rule_4.2.1.1
+        
+        - name: rule 4.2.1.2 | check for rsyslog service -ennabled or not
+          service: 
+            name: rsyslog
+            enabled: yes
+        
+        - name: 4.2.1.3 | check for journald is configured to send logs to rsyslog
+          lineinfile:
+            path: /etc/systemd/journald.conf
+            regexp: "^#ForwardToSyslog=|^ForwardToSyslog="
+            line: ForwardToSyslog=yes
+       
+        - name: 4.2.1.3 |
+
+
+      become: yes
+      become_user: root      
