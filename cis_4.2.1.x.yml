@@ -28,6 +28,21 @@
             regexp: '^\$FileCreateMode 0640|#$FileCreateMode 0640'
             line: "$FileCreateMode 0640"
           tags: rule_4.2.1.4
+        
+        - name: 4.2.1.5 | mail logging is configured
+          blockinfile:
+            path: /etc/rsyslog.conf
+            state: present
+            marker: "# {mark} MAIL LOG SETTINGS (Managed by Ansible)"
+            block: |
+              # cis rule remediationms for mail logging 
+              mail.*
+              mail.info
+              mail.warning
+              mail.err
+            insertafter: '# Log all the messages in one place'
+
+          notify: restart rsyslog
 
 
       become: yes
