@@ -1,0 +1,39 @@
+---
+  - name: "rhel 8 CIS 5.1.x to check cron is installed and enabled"
+    hosts: servera
+    gather_facts: no
+    tasks:
+      - block:
+          - name: CIS rule 5.1.1  |check cron is installed
+            service:
+              name: chrony
+              state: installed
+          
+          - name: CIS rule 5.1.2 | check permissions on /etc/crontanb - beat Qualys scan :-)
+            file: 
+              path: /etc/crontab
+              owner: root
+              group: root
+              mode: 0600
+            tags:
+              - cron
+          
+          - name: CIS rule 5.1.3 | permissions on /etc/cron.hourly
+            file: 
+              path: /etc/cron.hourly
+              state: directory
+              onwer: root
+              group: root
+              mode: 0700
+          
+          - name: CIS rule 5.1.4 |permission on directory /etc/cront.daily
+            file: 
+              path: /etc/cront.daily
+              state: directory
+              owner: root
+              group: root
+              mode: 0700
+
+          
+
+          
