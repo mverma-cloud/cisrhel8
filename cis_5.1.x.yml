@@ -1,5 +1,5 @@
 ---
-  - name: "rhel 8 CIS 5.1.x to check cron is installed and enabled"
+  - name: "rhel 8 CIS 5.1.x to check cron is installed and enabled |updates"
     hosts: servera
     tasks:
       - block:
